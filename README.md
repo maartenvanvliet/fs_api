@@ -61,6 +61,11 @@ invoice.errors
 # Delete an invoice
 api_client.invoices.delete(invoice)
 
+# Search in all fields of invoices
+api_client.invoices.search('john)
+
+# Search in city field of invoices
+api_client.invoices.search(city: 'john)
 ```
 
 ## Todo
