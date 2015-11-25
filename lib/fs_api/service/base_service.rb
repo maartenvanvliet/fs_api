@@ -70,8 +70,10 @@ module FsApi
         true
       end
 
-      def all
-        if response = api_client.get(path)
+      def all(params = {})
+        query_path = params.empty? ? path : "#{path}?#{URI.encode_www_form(params)}"
+
+        if response = api_client.get(query_path)
           if response.code.to_i == success_status_code
             JSON.parse(response.body).map do |attributes|
               collection_class.new(attributes.merge(from_api: true))

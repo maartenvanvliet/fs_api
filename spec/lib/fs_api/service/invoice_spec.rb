@@ -16,6 +16,15 @@ describe FsApi::Service::Invoice do
       expect(invoices.first.invoicenr).to eq 'F20150001'
     end
 
+    it "retrieves all invoices with filter" do
+      stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/invoices?filter=overdue").to_return(body: [json_response(:invoice)].to_json )
+
+      invoices = service.all(filter: :overdue)
+
+      expect(invoices.size).to eq 1
+      expect(invoices.first.invoicenr).to eq 'F20150001'
+    end
+
     it "retrieves a invoice" do
       stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/invoices/20150001").to_return(body: { 'invoice' => json_response(:invoice)}.to_json )
 
