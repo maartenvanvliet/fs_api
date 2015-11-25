@@ -28,6 +28,10 @@ module FsApi
         if response = @api_client.get([path,id].join('/'))
           if response.code.to_i == success_status_code
             json_response = JSON.parse(response.body)
+            # Weird case when nothing is found all clients are returned
+            # #find should only return a single record
+            return nil if json_response.is_a? Array
+            # Return instance
             collection_class.new(json_response[resource_type].merge(from_api: true))
           end
         end

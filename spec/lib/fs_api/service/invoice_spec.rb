@@ -8,7 +8,8 @@ describe FsApi::Service::Invoice do
 
   describe "retrieval" do
     it "retrieves all invoices" do
-      stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/invoices").to_return(body: [json_response(:invoice)].to_json )
+      stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/invoices")
+        .to_return(body: [json_response(:invoice)].to_json )
 
       invoices = service.all
 
@@ -17,7 +18,8 @@ describe FsApi::Service::Invoice do
     end
 
     it "retrieves all invoices with filter" do
-      stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/invoices?filter=overdue").to_return(body: [json_response(:invoice)].to_json )
+      stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/invoices?filter=overdue")
+        .to_return(body: [json_response(:invoice)].to_json )
 
       invoices = service.all(filter: :overdue)
 
@@ -26,11 +28,21 @@ describe FsApi::Service::Invoice do
     end
 
     it "retrieves a invoice" do
-      stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/invoices/20150001").to_return(body: { 'invoice' => json_response(:invoice)}.to_json )
+      stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/invoices/20150001")
+        .to_return(body: { 'invoice' => json_response(:invoice)}.to_json )
 
       invoice = service.find('20150001')
 
       expect(invoice.invoicenr).to eq 'F20150001'
+    end
+
+    it "retrieves a invoice" do
+      stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/invoices/bogus").
+        to_return(body: [json_response(:invoice)].to_json )
+
+      invoice = service.find('bogus')
+
+      expect(invoice).to eq nil
     end
   end
 
