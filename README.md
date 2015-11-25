@@ -70,9 +70,10 @@ api_client.invoices.search(city: 'john')
 
 ## Todo
 * Handle rate limiting
-* Implement saved invoices resource
-* Implement search
-* Implement invoice payment registration
+* Refactor base service so services can choose to implement parts
+* ~~Implement saved invoices resource~~
+* ~~Implement search~~
+* ~~Implement invoice payment registration~~
 
 ## Contributing
 
