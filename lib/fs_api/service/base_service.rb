@@ -27,8 +27,8 @@ module FsApi
       def find(id)
         if response = @api_client.get([path,id].join('/'))
           if response.code.to_i == success_status_code
-            json_response = JSON.parse(response.body).merge(from_api: true)
-            collection_class.new(json_response[resource_type])
+            json_response = JSON.parse(response.body)
+            collection_class.new(json_response[resource_type].merge(from_api: true))
           end
         end
       end
