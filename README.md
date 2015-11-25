@@ -62,10 +62,10 @@ invoice.errors
 api_client.invoices.delete(invoice)
 
 # Search in all fields of invoices
-api_client.invoices.search('john)
+api_client.invoices.search('john')
 
 # Search in city field of invoices
-api_client.invoices.search(city: 'john)
+api_client.invoices.search(city: 'john')
 ```
 
 ## Todo
