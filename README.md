@@ -1,6 +1,6 @@
 # FsApi
 
-Gem to interface with the [https://www.factuursturen.nl/?a=1552](factuursturen.nl)
+Gem to interface with the [factuursturen.nl](https://www.factuursturen.nl/?a=1552)
 invoicing API
 
 Still some issues, upon api calls the server sends back json with stringified
