@@ -9,13 +9,12 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Maarten van Vliet"]
   spec.email         = ["maartenvanvliet@gmail.com"]
   spec.summary       = %q{Ruby-Api library for factuursturen.nl }
-  spec.description   = %q{Ruby-Api library for factuursturen.nl. As of yet incomplete support for the api, but functional }
-  spec.homepage      = ""
+  spec.description   = %q{Ruby-Api library for factuursturen.nl }
+  spec.homepage      = "https://github.com/maartenvanvliet/fs_api"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.test_files    = spec.files.grep(%r{^(spec)/})
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "rspec", "~> 3.2"
