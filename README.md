@@ -42,6 +42,9 @@ api_client.clients.all
 # Retrieve all invoices
 api_client.invoices.all
 
+# Find an invoice
+api_client.invoices.find(invoice_number)
+
 # Create an invoice
 invoice = api_client.invoices.build({clientnr: '1'})
 api_client.invoices.save(invoice)
@@ -55,8 +58,8 @@ api_client.invoices.save(invoice)
 # Has the errors of the last api operation
 invoice.errors
 
-# Find an invoice
-api_client.invoices.find(invoice_number)
+# Delete an invoice
+api_client.invoices.delete(invoice)
 
 ```
 
