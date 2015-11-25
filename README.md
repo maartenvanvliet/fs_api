@@ -1,5 +1,5 @@
 # FsApi
-
+[![Build Status](https://travis-ci.org/maartenvanvliet/fs_api.svg)](https://travis-ci.org/maartenvanvliet/fs_api)
 Gem to interface with the [factuursturen.nl](https://www.factuursturen.nl/?a=1552)
 invoicing API
 
