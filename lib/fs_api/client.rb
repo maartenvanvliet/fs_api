@@ -70,6 +70,14 @@ class FsApi::Client
     FsApi::Service::Product.new(self)
   end
 
+  def invoices_payments
+    FsApi::Service::InvoicesPayment.new(self)
+  end
+
+  def saved_invoices
+    FsApi::Service::InvoicesSaved.new(self)
+  end
+
   private
     def perform(request)
       request.basic_auth username, password

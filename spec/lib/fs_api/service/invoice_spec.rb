@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe FsApi::Service::Client do
+describe FsApi::Service::Invoice do
 
   let(:api_client) { FsApi::Client.new('username', 'api_key') }
   let(:service) { FsApi::Service::Invoice.new(api_client) }
@@ -41,6 +41,28 @@ describe FsApi::Service::Client do
       invoice = service.create({'invoicenr' => 2})
 
       expect(invoice.invoicenr).to eq 2
+    end
+  end
+
+  describe "search" do
+    it "searches in all fields" do
+      stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/search/invoices/all/john").
+        to_return(body: [json_response(:invoice)].to_json )
+
+      invoices = service.search('john')
+
+      expect(invoices.size).to eq 1
+      expect(invoices.first.invoicenr).to eq 'F20150001'
+    end
+
+    it "searches in a fields" do
+      stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/search/invoices/city/john").
+        to_return(body: [json_response(:invoice)].to_json )
+
+      invoices = service.search(city: 'john')
+
+      expect(invoices.size).to eq 1
+      expect(invoices.first.invoicenr).to eq 'F20150001'
     end
   end
 end

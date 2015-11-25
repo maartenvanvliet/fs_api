@@ -53,4 +53,26 @@ describe FsApi::Service::Client do
       service.save(client)
     end
   end
+
+  describe "search" do
+    it "searches in all fields" do
+      stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/search/clients/all/john").
+        to_return(body: [json_response(:client)].to_json )
+
+      clients = service.search('john')
+
+      expect(clients.size).to eq 1
+      expect(clients.first.clientnr).to eq '1'
+    end
+
+    it "searches in a fields" do
+      stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/search/clients/city/john").
+        to_return(body: [json_response(:client)].to_json )
+
+      clients = service.search(city: 'john')
+
+      expect(clients.size).to eq 1
+      expect(clients.first.clientnr).to eq '1'
+    end
+  end
 end

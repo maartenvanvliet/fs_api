@@ -53,6 +53,6 @@ class FsApi::Resource::Client
     timestamp
   )
   def path
-    "/clients/#{clientnr}"
+    persisted? ? "/#{clientnr}" : ""
   end
 end

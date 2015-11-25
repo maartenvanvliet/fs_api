@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe FsApi::Service::Client do
+describe FsApi::Service::Product do
   let(:api_client) { FsApi::Client.new('username', 'api_key') }
 
   let(:service) { FsApi::Service::Product.new(api_client) }
@@ -50,6 +50,28 @@ describe FsApi::Service::Client do
       product.code = 'something'
 
       service.save(product)
+    end
+  end
+
+  describe "search" do
+    it "searches in all fields" do
+      stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/search/products/all/john").
+        to_return(body: [json_response(:product)].to_json )
+
+      products = service.search('john')
+
+      expect(products.size).to eq 1
+      expect(products.first.code).to eq "product code"
+    end
+
+    it "searches in a fields" do
+      stub_request(:get, "https://username:api_key@www.factuursturen.nl/api/v1/search/products/city/john").
+        to_return(body: [json_response(:product)].to_json )
+
+      products = service.search(city: 'john')
+
+      expect(products.size).to eq 1
+      expect(products.first.code).to eq "product code"
     end
   end
 end

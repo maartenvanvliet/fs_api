@@ -20,6 +20,10 @@ module FsApi
         "/#{resource_type_plural}"
       end
 
+      def instance_path(instance)
+        [path, instance.path].join
+      end
+
       def find(id)
         if response = @api_client.get([path,id].join('/'))
           if response.code.to_i == success_status_code
@@ -41,7 +45,7 @@ module FsApi
       end
 
       def delete(instance)
-        @api_client.delete(instance.path)
+        @api_client.delete(instance_path(instance))
         if api_client._last_response.code.to_i != success_status_code
           instance.errors = api_client._last_response.body
           return false
@@ -51,13 +55,13 @@ module FsApi
       def save(instance)
         return false if instance.persisted? && !instance.updateable?
         if instance.persisted?
-          @api_client.put(instance.path, instance.to_json)
+          @api_client.put(instance_path(instance), instance.to_json)
           if api_client._last_response.code.to_i != success_status_code
             instance.errors = api_client._last_response
             return false
           end
         else
-          @api_client.post(path, instance.to_json)
+          @api_client.post(instance_path(instance), instance.to_json)
           if api_client._last_response.code.to_i != create_success_status_code
             instance.errors = api_client._last_response.body
             return false
