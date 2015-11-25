@@ -45,9 +45,10 @@ class FsApi::Resource::Invoice
   has_datetime_attributes %w(
     duedate
   )
-  def self.path
-    '/invoices'
+  def path
+    "/invoices/#{id}"
   end
+
 
   # invoices cannot be updated
   def updateable?

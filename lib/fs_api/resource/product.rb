@@ -12,7 +12,7 @@ class FsApi::Resource::Product
   )
 
   def path
-    persisted? ? "/clients/#{id}" : "/clients"
+    "/products/#{id}"
   end
 
 end

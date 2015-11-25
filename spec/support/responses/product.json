@@ -1,0 +1,8 @@
+{
+   "id":"1",
+   "code":"product code",
+   "name":"Some line",
+   "price":"120",
+   "taxes":"21",
+   "priceintax":"145.2"
+}

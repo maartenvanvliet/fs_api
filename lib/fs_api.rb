@@ -1,3 +1,4 @@
+require 'json'
 
 require "fs_api/client"
 require "fs_api/service/base_service"

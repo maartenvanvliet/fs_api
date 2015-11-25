@@ -1,4 +1,3 @@
-require 'json'
 module FsApi
   module Service
     class BaseService
@@ -17,11 +16,15 @@ module FsApi
         "#{resource_type}s"
       end
 
+      def path
+        "/#{resource_type_plural}"
+      end
+
       def find(id)
         if response = @api_client.get([path,id].join('/'))
           if response.code.to_i == success_status_code
             json_response = JSON.parse(response.body).merge(from_api: true)
-            collection_class.new(json_response[root_node])
+            collection_class.new(json_response[resource_type])
           end
         end
       end
@@ -63,8 +66,8 @@ module FsApi
         true
       end
 
-      def all(params = {})
-        if response = api_client.get(path, params)
+      def all
+        if response = api_client.get(path)
           if response.code.to_i == success_status_code
             JSON.parse(response.body).map do |attributes|
               collection_class.new(attributes.merge(from_api: true))
