@@ -1,5 +1,7 @@
+[![Gem Version](https://badge.fury.io/rb/fs_api.svg)](https://badge.fury.io/rb/fs_api) [![Build Status](https://travis-ci.org/maartenvanvliet/fs_api.svg)](https://travis-ci.org/maartenvanvliet/fs_api)[![Code Climate](https://codeclimate.com/github/maartenvanvliet/fs_api/badges/gpa.svg)](https://codeclimate.com/github/maartenvanvliet/fs_api)
+
 # FsApi
-[![Build Status](https://travis-ci.org/maartenvanvliet/fs_api.svg)](https://travis-ci.org/maartenvanvliet/fs_api)
+
 Gem to interface with the [factuursturen.nl](https://www.factuursturen.nl/?a=1552)
 invoicing API
 
