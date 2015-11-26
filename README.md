@@ -8,8 +8,7 @@ floats/integers/booleans ("true", "1" etc.), for the booleans a conversion is
 in place, for the others there isn't yet.
 
 Use the docs at https://www.factuursturen.nl/docs/api_v1.pdf for more information
-on the api. Note that there are inconsistencies between the docs and the
-implementation.
+on the api. Note that there are inconsistencies between the docs and what the api actually does. E.g. required fields that are not required.
 
 
 ## Installation
