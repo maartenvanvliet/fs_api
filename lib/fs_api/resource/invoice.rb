@@ -45,6 +45,7 @@ class FsApi::Resource::Invoice
     datesaved
     tax_type
     tax_shifted
+    category
   )
 
   has_datetime_attributes %w(
