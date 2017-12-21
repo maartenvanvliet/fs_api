@@ -15,4 +15,25 @@ require "fs_api/resource/invoices_payment"
 require "fs_api/resource/product"
 
 module FsApi
+  class << self
+    attr_accessor :configuration
+  end
+
+  def self.configure
+    self.configuration ||= Configuration.new
+    yield(configuration)
+  end
+
+  def self.new
+    FsApi::Client.new(configuration.username, configuration.api_key)
+  end
+
+  class Configuration
+    attr_accessor :username, :api_key
+
+    def initialize
+      @username = nil
+      @api_key = nil
+    end
+  end
 end

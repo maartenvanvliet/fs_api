@@ -36,6 +36,10 @@ class FsApi::Resource::Client
     collecttype
     tax_type
     default_category
+    email_reminder
+    custom_1
+    custom_2
+    custom_3
   )
   has_nillable_attributes %i(
     biccode

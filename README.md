@@ -31,9 +31,26 @@ Or install it yourself as:
 
 ## Usage
 
+### Initialization
+
 ```ruby
 api_client = FsApi::Client.new(username, api_key)
+```
 
+or
+
+```ruby
+FsApi.configure do |config|
+  config.api_key = '...'
+  config.username = '...'
+end
+
+api_client = FsApi.new
+```
+
+### After initialization
+
+```ruby
 # Retrieve all products
 api_client.products.all
 
